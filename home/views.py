@@ -20,6 +20,19 @@ def home(request):
         )
 
         fig = go.Figure(data=[trace], layout=layout)
+        fig.update_layout(
+            autosize=False,
+            width=50,
+            height=50,
+            margin=dict(
+                l=50,
+                r=50,
+                b=10,
+                t=10,
+                pad=4
+            ),
+            paper_bgcolor="LightSteelBlue",
+        )
         plot_div = plot(fig, output_type='div', include_plotlyjs=False)
         return plot_div
     context = {
