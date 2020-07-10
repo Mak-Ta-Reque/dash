@@ -8,7 +8,6 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = DjangoDash('SimpleExample', external_stylesheets=external_stylesheets)
 
-
 app.layout = html.Div([
     html.H1('Square Root Slider Graph'),
     dcc.Graph(id='slider-graph', animate=True, style={"backgroundColor": "#1a2d46", 'color': '#ffffff'}),
@@ -24,18 +23,16 @@ app.layout = html.Div([
 
 
 @app.callback(
-               Output('slider-graph', 'figure'),
-              [Input('slider-updatemode', 'value')])
+    Output('slider-graph', 'figure'),
+    [Input('slider-updatemode', 'value')])
 def display_value(value):
-
-
     x = []
     for i in range(value):
         x.append(i)
 
     y = []
     for i in range(value):
-        y.append(i*i)
+        y.append(i * i)
 
     graph = go.Scatter(
         x=x,
@@ -43,6 +40,7 @@ def display_value(value):
         name='Manipulate Graph'
     )
     layout = go.Layout(
+
         paper_bgcolor='#27293d',
         plot_bgcolor='rgba(0,0,0,0)',
         xaxis=dict(range=[min(x), max(x)]),

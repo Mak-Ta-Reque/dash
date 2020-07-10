@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from plotly.offline import plot
 import plotly.graph_objects as go
+import dash_core_components as dcc
 
 
 # Create your views here.
@@ -14,6 +15,7 @@ def home(request):
         )
 
         layout = dict(
+
             title='Simple Graph',
             xaxis=dict(range=[min(x1), max(x1)]),
             yaxis=dict(range=[min(y1), max(y1)])
@@ -21,9 +23,9 @@ def home(request):
 
         fig = go.Figure(data=[trace], layout=layout)
         fig.update_layout(
-            autosize=False,
-            width=50,
-            height=50,
+            autosize=True,
+            width=500,
+            height=500,
             margin=dict(
                 l=50,
                 r=50,
@@ -35,6 +37,7 @@ def home(request):
         )
         plot_div = plot(fig, output_type='div', include_plotlyjs=False)
         return plot_div
+
     context = {
         'plot1': scatter()
     }
